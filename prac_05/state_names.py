@@ -1,18 +1,24 @@
 """
 CP1404/CP5632 Practical
 State names in a dictionary
-File needs reformatting
+File reformatted, short state inputs can be any case,
+try / except suite for (EAFP) approach.
 """
 
-# TODO: Reformat this file so the dictionary code follows PEP 8 convention
-CODE_TO_NAME = {"QLD":"Queensland", "NSW": "New South Wales", "NT" : "Northern Territory", "WA" : "Western Australia",
-            "ACT": "Australian Capital Territory", "VIC": "Victoria", "TAS": "Tasmania"}
-print(CODE_TO_NAME)
+CODE_TO_NAME = {"QLD": "Queensland", "NSW": "New South Wales",
+                "NT": "Northern Territory", "WA": "Western Australia",
+                "ACT": "Australian Capital Territory", "VIC": "Victoria", "TAS": "Tasmania"}
 
-state_code = input("Enter short state: ")
-while state_code != "":
-    if state_code in CODE_TO_NAME:
-        print(state_code, "is", CODE_TO_NAME[state_code])
-    else:
-        print("Invalid short state")
-    state_code = input("Enter short state: ")
+for state, name in CODE_TO_NAME.items():
+    print(f"{state:3} is {name}")
+print()
+
+is_valid_input = False
+while not is_valid_input:
+    try:
+        state_code = input('Enter short state: ').upper()
+        print(f"{state_code:3} is {CODE_TO_NAME[state_code]}")
+        is_valid_input = True
+
+    except KeyError:
+        print('Enter a valid short state')
