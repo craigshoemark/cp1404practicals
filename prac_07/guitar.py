@@ -28,5 +28,5 @@ class Guitar:
             return False
 
     def __lt__(self, other):
-        """Determine display order of guitar by age"""
+        """Determine display order of guitar by age."""
         return self.year < other.year
