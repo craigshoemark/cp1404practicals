@@ -5,13 +5,12 @@ Estimate time for completion: 10 hours.
 Actual time:
 """
 
-
 # Imports:
-# Class
-# Datetime
+from project import Project
 
-# CONSTANTS:
-# FILENAME = projects.txt
+# from datetime import datetime
+
+FILENAME = 'projects.txt'
 MENU = """
 (L)oad projects\n(S)ave projects\n(D)isplay projects \n(F)ilter projects by date 
 (A)dd new project \n(U)pdate project \n(Q)uit
@@ -28,7 +27,9 @@ def main():
     choice = input(">>> ").upper()
     while choice != 'Q':
         if choice == 'L':
-            pass
+            choose_filename = input("Choose a file to load project from: ")
+            projects = load_projects(choose_filename)
+            display_projects(projects)
         elif choice == 'S':
             pass
         elif choice == 'D':
@@ -48,23 +49,36 @@ def main():
     pass
 
 
-def load_projects():
-    # TODO Prompt the user for a filename to load projects from and load them
-    # Load from file projects.txt
-    # Projects will be objects
-    pass
+def load_projects(filename):
+    projects = []
+    # TODO error checking
+    with open(filename, 'r') as in_file:
+        in_file.readline()
+        for line in in_file:
+            name, start_date, priority, cost_estimate, completion = line.strip().split('\t')
+            start_date = "22,33,24"  # TODO update using datetime module later
+            priority = int(priority)
+            cost_estimate = float(cost_estimate)
+            completion = float(completion)
+            project = Project(name, start_date, priority, cost_estimate, completion)
+            projects.append(project)
+
+    return projects
 
 
-def display_projects():
-    # TODO Display two groups: incomplete projects; completed projects, both sorted by priority
+def display_projects(projects):  # not yet sorting by priority
 
-    # TODO Incomplete projects: own function ?
-    # Display incomplete projects, name, date, priority(sort by), estimate, completion percentage.
-    # See sample output.
-    # TODO Completed projects: own function ?
-    # Display incomplete projects, name, date, priority, estimate, completion percentage.
-    # See sample output.
-    pass
+    incomplete_projects = [project for project in projects if project.completion < 100]
+
+    print("Incomplete projects:")
+    for project in incomplete_projects:
+        print(project)
+
+    completed_projects = [project for project in projects if project.completion == 100]
+
+    print('Completed projects:')
+    for project in completed_projects:
+        print(project)
 
 
 def update_project():
