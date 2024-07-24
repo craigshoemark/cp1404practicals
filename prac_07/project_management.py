@@ -39,7 +39,7 @@ def main():
         elif choice == 'A':
             add_new_project(projects)
         elif choice == 'U':
-            pass
+            update_project(projects)
         elif choice == 'Q':
             pass
         else:
@@ -81,18 +81,22 @@ def display_projects(projects):  # not yet sorting by priority
         print(project)
 
 
-def update_project():
-    # Choose a project, then modify the completion % and/or priority - leave blank to retain existing values
-    # TODO enumerate (start 0), name, start date, priority, estimate, completion %,
-    #  add new completion %, add new priority (by number).
-    # See sample output.
-    pass
+def update_project(projects):
+    for index, project in enumerate(projects):
+        print(f"{index} {project}")
+    project_to_update = int(input("Project choice: "))
+    project = projects[project_to_update]
+    print(project)
+    new_completion = float(input("New Percentage: "))
+    project.completion = new_completion
+    new_priority = int(input("New Priority: "))
+    project.priority = new_priority
 
 
 def add_new_project(projects):
     # TODO sort by priority
     name = input("Name: ")
-    start_date = int(input("Start date (dd/mm/yy): "))
+    start_date = int(input("Start date (dd/mm/yy): "))  # improve to reflect datetime module
     priority = int(input("Priority: "))
     cost_estimate = float(input("Cost estimate: "))
     completion = float(input("Percent complete: "))
