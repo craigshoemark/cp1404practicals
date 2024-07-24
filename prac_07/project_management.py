@@ -7,8 +7,7 @@ Actual time:
 
 # Imports:
 from project import Project
-
-# from datetime import datetime
+from datetime import datetime
 
 FILENAME = 'projects.txt'
 MENU = """
@@ -56,7 +55,7 @@ def load_projects(filename):
         in_file.readline()
         for line in in_file:
             name, start_date, priority, cost_estimate, completion = line.strip().split('\t')
-            start_date = "22,33,24"  # TODO update using datetime module later
+            start_date = datetime.strptime(start_date, "%d/%m/%Y").date()
             priority = int(priority)
             cost_estimate = float(cost_estimate)
             completion = float(completion)
@@ -96,7 +95,8 @@ def update_project(projects):
 def add_new_project(projects):
     # TODO sort by priority
     name = input("Name: ")
-    start_date = int(input("Start date (dd/mm/yy): "))  # improve to reflect datetime module
+    start_date = input("Start date (dd/mm/yyyy): ")
+    start_date = datetime.strptime(start_date, '%d/%m/%Y').date()
     priority = int(input("Priority: "))
     cost_estimate = float(input("Cost estimate: "))
     completion = float(input("Percent complete: "))
