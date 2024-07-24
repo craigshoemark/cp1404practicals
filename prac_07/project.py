@@ -13,8 +13,8 @@ class Project:
     def __str__(self):
         """Display string values."""
         # TODO - will be int and float values here..
-        return (f"{self.name}, start: {self.start_date}, priority {self.priority}, "
-                f"estimate{self.cost_estimate:.2f}, completion: {self.completion}")
+        return (f"{self.name}, start: {self.start_date}, priority: {self.priority}, "
+                f"estimate: ${self.cost_estimate:.2f}, completion: {self.completion}%")
 
     def __repr__(self):
         """Display representation."""
