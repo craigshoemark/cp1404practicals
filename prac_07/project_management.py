@@ -33,11 +33,11 @@ def main():
         elif choice == 'S':
             pass
         elif choice == 'D':
-            pass
+            display_projects(projects)
         elif choice == 'F':
             pass
         elif choice == 'A':
-            pass
+            add_new_project(projects)
         elif choice == 'U':
             pass
         elif choice == 'Q':
@@ -89,11 +89,15 @@ def update_project():
     pass
 
 
-def add_new_project():
-    # Ask the user for the inputs and add a new project to memory
-    # TODO add project name, start date, priority, cost estimate, percent completed
-    # See sample output.
-    pass
+def add_new_project(projects):
+    # TODO sort by priority
+    name = input("Name: ")
+    start_date = int(input("Start date (dd/mm/yy): "))
+    priority = int(input("Priority: "))
+    cost_estimate = float(input("Cost estimate: "))
+    completion = float(input("Percent complete: "))
+    new_project = Project(name, start_date, priority, cost_estimate, completion)
+    projects.append(new_project)
 
 
 def filter_projects_by_date():
