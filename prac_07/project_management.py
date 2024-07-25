@@ -2,7 +2,7 @@
 Project management program
 
 Estimate time for completion: 10 hours.
-Actual time:
+Actual time: Approx 8 hours.
 """
 
 from project import Project
@@ -20,7 +20,6 @@ def main():
     filter, add, and update projects from file"""
     projects = []
 
-    # TODO Menu
     print("Welcome to Pythonic Project Management")
     # Display loaded objects summary
     print(MENU)
@@ -131,12 +130,15 @@ def save_projects(filename, projects):
     save_to_file = input(f"Would you like to save to {filename}? yes or no: ").lower()
     project = projects
     if save_to_file == "yes":
-        with open(filename, 'w') as outfile:
-            outfile.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion\n")
-            for project in projects:
-                line = (f"{project.name}\t{project.start_date.strftime('%d/%m/%Y')}\t"
-                        f"{project.priority}\t{project.cost_estimate:.2f}\t{project.completion:.2f}\n")
-                outfile.write(line)
+        try:
+            with open(filename, 'w') as outfile:
+                outfile.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion\n")
+                for project in projects:
+                    line = (f"{project.name}\t{project.start_date.strftime('%d/%m/%Y')}\t"
+                            f"{project.priority}\t{project.cost_estimate:.2f}\t{project.completion:.2f}\n")
+                    outfile.write(line)
+        except IOError:
+            print('Save to file unsuccessful')
         print("Thank you for using custom-built project management software.")
     else:
         print("Thank you for using custom-built project management software.")
