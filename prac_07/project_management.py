@@ -93,7 +93,6 @@ def update_project(projects):
 
 
 def add_new_project(projects):
-    # TODO sort by priority
     name = input("Name: ")
     start_date = input("Start date (dd/mm/yyyy): ")
     start_date = datetime.strptime(start_date, '%d/%m/%Y').date()
@@ -102,6 +101,7 @@ def add_new_project(projects):
     completion = float(input("Percent complete: "))
     new_project = Project(name, start_date, priority, cost_estimate, completion)
     projects.append(new_project)
+    projects.sort()
 
 
 def filter_projects_by_date():

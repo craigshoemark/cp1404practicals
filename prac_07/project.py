@@ -1,6 +1,10 @@
 """Project Class."""
 
 
+# def sort_by_priority(projects):
+#     projects.sort()
+
+
 class Project:
     def __init__(self, name, start_date, priority, cost_estimate, completion):
         """classProject instance variables."""
@@ -22,6 +26,6 @@ class Project:
         return (f"{self.name}, start: {self.start_date}, priority {self.priority}, "
                 f"estimate{self.cost_estimate:.2f}, completion: {self.completion}")
 
-    def sort_projects(self):
-        # TODO sort projects based on priority order
-        pass
+    def __lt__(self, other):
+        """Determine project priority."""
+        return self.priority < other.priority
