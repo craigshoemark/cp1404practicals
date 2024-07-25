@@ -85,15 +85,18 @@ def display_projects(projects):
 
 def update_project(projects):
     """Update an existing project."""
-    for index, project in enumerate(projects):
-        print(f"{index} {project}")
-    project_to_update = int(input("Project choice: "))
-    project = projects[project_to_update]
-    print(project)
-    new_completion = float(input("New Percentage: "))
-    project.completion = new_completion
-    new_priority = int(input("New Priority: "))
-    project.priority = new_priority
+    try:
+        for index, project in enumerate(projects):
+            print(f"{index} {project}")
+        project_to_update = int(input("Project choice: "))
+        project = projects[project_to_update]
+        print(project)
+        new_completion = float(input("New Percentage: "))
+        project.completion = new_completion
+        new_priority = int(input("New Priority: "))
+        project.priority = new_priority
+    except ValueError:
+        print("Incorrect Value")
 
 
 def add_new_project(projects):
