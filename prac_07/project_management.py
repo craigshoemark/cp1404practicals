@@ -5,7 +5,6 @@ Estimate time for completion: 10 hours.
 Actual time:
 """
 
-# Imports:
 from project import Project
 from datetime import datetime
 
@@ -34,7 +33,7 @@ def main():
         elif choice == 'D':
             display_projects(projects)
         elif choice == 'F':
-            pass
+            filter_projects_by_date(projects)
         elif choice == 'A':
             add_new_project(projects)
         elif choice == 'U':
@@ -65,8 +64,7 @@ def load_projects(filename):
     return projects
 
 
-def display_projects(projects):  # not yet sorting by priority
-
+def display_projects(projects):
     incomplete_projects = [project for project in projects if project.completion < 100]
 
     print("Incomplete projects:")
@@ -74,7 +72,7 @@ def display_projects(projects):  # not yet sorting by priority
         print(project)
 
     completed_projects = [project for project in projects if project.completion == 100]
-
+    projects.sort()
     print('Completed projects:')
     for project in completed_projects:
         print(project)
@@ -104,11 +102,15 @@ def add_new_project(projects):
     projects.sort()
 
 
-def filter_projects_by_date():
-    # TODO show projects after (x date),
-    # TODO display name, start date, priority, estimate cost, completion percentage %
-    # See sample output.
-    pass
+def filter_projects_by_date(projects):
+    """Filter projects by user specified date."""
+    start_date = input("Show projects that start after date (dd/mm/yy): ")
+    start_date = datetime.strptime(start_date, '%d/%m/%Y').date()
+
+    filtered_projects = [project for project in projects if project.start_date > start_date]
+
+    for projects in filtered_projects:
+        print(projects)
 
 
 def save_projects():
