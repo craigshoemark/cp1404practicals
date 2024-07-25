@@ -67,17 +67,20 @@ def load_projects(filename):
 
 def display_projects(projects):
     """Display projects: incomplete and completed sorted by priority."""
-    incomplete_projects = [project for project in projects if project.completion < 100]
+    try:
+        incomplete_projects = [project for project in projects if project.completion < 100]
 
-    print("Incomplete projects:")
-    for project in incomplete_projects:
-        print(project)
+        print("Incomplete projects:")
+        for project in incomplete_projects:
+            print(project)
 
-    completed_projects = [project for project in projects if project.completion == 100]
-    projects.sort()
-    print('Completed projects:')
-    for project in completed_projects:
-        print(project)
+        completed_projects = [project for project in projects if project.completion == 100]
+        projects.sort()
+        print('Completed projects:')
+        for project in completed_projects:
+            print(project)
+    except AttributeError:
+        print("Error: one or more projects are missing required attributes")
 
 
 def update_project(projects):
