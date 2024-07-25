@@ -29,7 +29,7 @@ def main():
             projects = load_projects(choose_filename)
             display_projects(projects)
         elif choice == 'S':
-            pass
+            save_projects(FILENAME, projects)
         elif choice == 'D':
             display_projects(projects)
         elif choice == 'F':
@@ -38,13 +38,10 @@ def main():
             add_new_project(projects)
         elif choice == 'U':
             update_project(projects)
-        elif choice == 'Q':
-            pass
         else:
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
-    pass
 
 
 def load_projects(filename):
@@ -113,10 +110,20 @@ def filter_projects_by_date(projects):
         print(projects)
 
 
-def save_projects():
-    # TODO Prompt the user for a filename to save projects to and save them
-    #
-    pass
+def save_projects(filename, projects):
+    """Save projects to file, writing over previous file contents."""
+    save_to_file = input(f"Would you like to save to {filename}? yes or no: ").lower()
+    project = projects
+    if save_to_file == "yes":
+        with open(filename, 'w') as outfile:
+            outfile.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion\n")
+            for project in projects:
+                line = (f"{project.name}\t{project.start_date.strftime('%d/%m/%Y')}\t"
+                        f"{project.priority}\t{project.cost_estimate:.2f}\t{project.completion:.2f}\n")
+                outfile.write(line)
+        print("Thank you for using custom-built project management software.")
+    else:
+        print("Thank you for using custom-built project management software.")
 
 
 main()
