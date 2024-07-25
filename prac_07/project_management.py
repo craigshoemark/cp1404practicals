@@ -101,15 +101,18 @@ def update_project(projects):
 
 def add_new_project(projects):
     """Add a new project object to projects."""
-    name = input("Name: ")
-    start_date = input("Start date (dd/mm/yyyy): ")
-    start_date = datetime.strptime(start_date, '%d/%m/%Y').date()
-    priority = int(input("Priority: "))
-    cost_estimate = float(input("Cost estimate: "))
-    completion = float(input("Percent complete: "))
-    new_project = Project(name, start_date, priority, cost_estimate, completion)
-    projects.append(new_project)
-    projects.sort()
+    try:
+        name = input("Name: ")
+        start_date = input("Start date (dd/mm/yyyy): ")
+        start_date = datetime.strptime(start_date, '%d/%m/%Y').date()
+        priority = int(input("Priority: "))
+        cost_estimate = float(input("Cost estimate: "))
+        completion = float(input("Percent complete: "))
+        new_project = Project(name, start_date, priority, cost_estimate, completion)
+        projects.append(new_project)
+        projects.sort()
+    except ValueError:
+        print("Incorrect value")
 
 
 def filter_projects_by_date(projects):
