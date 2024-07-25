@@ -16,6 +16,8 @@ MENU = """
 
 
 def main():
+    """Project management program to load, save, display,
+    filter, add, and update projects from file"""
     projects = []
 
     # TODO Menu
@@ -45,6 +47,7 @@ def main():
 
 
 def load_projects(filename):
+    """Load projects from file."""
     projects = []
     # TODO error checking
     with open(filename, 'r') as in_file:
@@ -62,6 +65,7 @@ def load_projects(filename):
 
 
 def display_projects(projects):
+    """Display projects: incomplete and completed sorted by priority."""
     incomplete_projects = [project for project in projects if project.completion < 100]
 
     print("Incomplete projects:")
@@ -76,6 +80,7 @@ def display_projects(projects):
 
 
 def update_project(projects):
+    """Update an existing project."""
     for index, project in enumerate(projects):
         print(f"{index} {project}")
     project_to_update = int(input("Project choice: "))
@@ -88,6 +93,7 @@ def update_project(projects):
 
 
 def add_new_project(projects):
+    """Add a new project object to projects."""
     name = input("Name: ")
     start_date = input("Start date (dd/mm/yyyy): ")
     start_date = datetime.strptime(start_date, '%d/%m/%Y').date()
